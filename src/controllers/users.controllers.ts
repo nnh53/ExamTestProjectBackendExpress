@@ -6,6 +6,7 @@ import { ErrorWithStatus } from '~/models/Errors'
 import User from '~/models/schemas/User.schema'
 import { ObjectId } from 'mongodb'
 import { USERS_MESSAGES } from '~/constants/message'
+import databaseService from '~/services/database.services'
 
 // export const loginController = async (req: Request, res: Response) => {
 //   // throw new ErrorWithStatus({ message: 'error test', status: 401 })
@@ -23,4 +24,14 @@ export const registerController = async (req: Request<ParamsDictionary, any, Reg
   // nhét vô database
   const result = await userService.register(req.body)
   res.json({ message: USERS_MESSAGES.REGISTER_SUCCESS, result })
+}
+
+export const submitController = async (req: Request, res: Response) => {
+  // nhét vô database
+  const { name, email, testId, now } = req.body
+  const user = await databaseService.users.findOne({ name, email, testId, now })
+  if (user) {
+    res.json(true)
+  }
+  throw new ErrorWithStatus({ message: 'error test', status: 401 })
 }

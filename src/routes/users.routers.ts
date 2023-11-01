@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { registerValidator } from '~/middlewares/users.middlewares'
-import { registerController } from '~/controllers/users.controllers'
+import { registerValidator, submitValidator } from '~/middlewares/users.middlewares'
+import { registerController, submitController } from '~/controllers/users.controllers'
 import { wrapAsync } from '~/utils/handlers'
 
 const userRouter = Router()
@@ -19,5 +19,7 @@ body: {
 */
 
 userRouter.post('/register', registerValidator, wrapAsync(registerController)) //đúng ra là phải thêm có validator
+
+userRouter.post('/submit', submitValidator, wrapAsync(submitController))
 
 export default userRouter
