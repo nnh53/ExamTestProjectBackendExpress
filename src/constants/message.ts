@@ -1,4 +1,5 @@
 export const USERS_MESSAGES = {
+  USER_INFO_TOKEN_IS_REQUIRED: 'User info token is required',
   TEST_ID_IS_REQUIRED: 'Test id is required',
   VALIDATION_ERROR: 'Validation error',
   //name

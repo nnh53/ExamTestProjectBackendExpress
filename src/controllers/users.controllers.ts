@@ -20,7 +20,6 @@ import { USERS_MESSAGES } from '~/constants/message'
 // }
 
 export const registerController = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response) => {
-  // const { email, password, confirm_password,  } = req.body
   // nhét vô database
   const result = await userService.register(req.body)
   res.json({ message: USERS_MESSAGES.REGISTER_SUCCESS, result })

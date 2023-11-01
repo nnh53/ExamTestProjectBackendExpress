@@ -38,20 +38,17 @@ export const registerValidator = validate(
       isEmail: {
         errorMessage: USERS_MESSAGES.EMAIL_IS_INVALID
       },
-      trim: true,
-      custom: {
-        options: async (value, { req }) => {
-          const isExist = await userService.checkEmailExist(value)
-          if (isExist) {
-            throw new Error(USERS_MESSAGES.EMAIL_ALREADY_EXISTS)
-          }
-          return true
-        }
-      }
+      trim: true
     },
     test_id: {
       notEmpty: {
         errorMessage: USERS_MESSAGES.TEST_ID_IS_REQUIRED
+      },
+      trim: true
+    },
+    user_info_token: {
+      notEmpty: {
+        errorMessage: USERS_MESSAGES.USER_INFO_TOKEN_IS_REQUIRED
       },
       trim: true
     }
